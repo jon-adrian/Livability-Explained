@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Where Would You Thrive? — Prototype</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="map.css" />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js" defer></script>
+  <script src="map.js" defer></script>
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <!-- 1. Intro: normal page content, no scrollytelling -->
+  <header class="intro">
+    <div class="content-width">
+      <p class="eyebrow">DSC 106 · Initial prototype</p>
+      <h1>Where Would You <em>Thrive?</em></h1>
+      <p class="intro-description">
+        A city's livability depends on what matters most to you.
+        Explore three factors that can help shape where you might want to live.
+      </p>
+      <p class="hint">Scroll to explore ↓</p>
+    </div>
+  </header>
+
+  <!-- 2. Only this section uses Scrollama -->
+  <section id="scrolly" class="content-width" aria-label="Three livability factors">
+    <div id="story" class="story">
+      <article class="step is-active" data-step="0">
+        <div class="step-card">
+          <p class="step-number">01 / 03</p>
+          <h2>Climate comfort</h2>
+          <p>How comfortable is a city's climate? Later, this section can introduce a temperature index and let visitors set their preferences.</p>
+          <p class="future-feature">Slider coming later</p>
+        </div>
+      </article>
+
+      <article class="step" data-step="1">
+        <div class="step-card">
+          <p class="step-number">02 / 03</p>
+          <h2>Housing affordability</h2>
+          <p>Housing costs influence where people can comfortably live. This step will eventually show our housing affordability index.</p>
+          <p class="future-feature">Slider coming later</p>
+        </div>
+      </article>
+
+      <article class="step" data-step="2">
+        <div class="step-card">
+          <p class="step-number">03 / 03</p>
+          <h2>Population density</h2>
+          <p>Some people prefer bustling cities; others prefer space and quiet. This step will eventually explain the population density metric.</p>
+          <p class="future-feature">Slider coming later</p>
+        </div>
+      </article>
+    </div>
+
+    <aside id="sticky-graphic" class="graphic" aria-label="Sticky visualization placeholder">
+      <div class="graphic-header">
+        <span class="graphic-caption">STICKY GRAPHIC · DEMO ONLY</span>
+        <span id="step-counter" aria-live="polite">01 / 03</span>
+      </div>
+      <h3 id="graphic-title">Climate comfort</h3>
+      <p id="graphic-description">Scroll to see this panel change.</p>
+      <!-- Replace ONLY this SVG / placeholder with your actual map later. -->
+      <div class="viz-container">
+        <svg id="demo-viz" viewBox="0 0 600 370" role="img" aria-label="Illustrative points showing which story step is active"></svg>
+        <span class="viz-note">Illustrative markers — not geographic data</span>
+      </div>
+    </aside>
+  </section>
+
+  <!-- 3. Final interactive city explorer: OUTSIDE #scrolly -->
+  <section id="explorer" class="playground" aria-labelledby="explorer-heading">
+    <div class="content-width">
+      <p class="eyebrow">Explore the data</p>
+      <h2 id="explorer-heading">Find your livable city</h2>
+      <p class="explorer-intro">Now explore the cities yourself. Select one or more metrics, pan or zoom the map, and hover near a city for its available data.</p>
+      <div class="controls" aria-label="Map controls">
+        <div class="controls-header"><span class="map-eyebrow">CHOOSE YOUR METRICS</span><span id="status">Loading data…</span></div>
+        <div class="toggle-row">
+          <label class="toggle"><input type="checkbox" name="metric" value="temperature" checked /><span class="swatch temperature"></span><span>Temperature <small>2026 · SSP1-2.6</small></span></label>
+          <label class="toggle"><input type="checkbox" name="metric" value="housing" checked /><span class="swatch housing"></span><span>Home value <small>October 31, 2026</small></span></label>
+          <label class="toggle"><input type="checkbox" name="metric" value="population" checked /><span class="swatch population"></span><span>Population <small>2025 estimate</small></span></label>
+        </div>
+        <div class="legend-note">Enable any combination. Hover tooltips include the city and the selected metrics. Dot color follows the first enabled metric (temperature, then housing, then population).</div>
+      </div>
+      <div class="map-shell" aria-label="Interactive map of U.S. cities">
+        <div class="map-topline"><div><span class="map-eyebrow">UNITED STATES</span><div class="map-title">City explorer</div></div><div class="map-actions"><button type="button" id="zoom-in" aria-label="Zoom in">+</button><button type="button" id="zoom-out" aria-label="Zoom out">−</button><button type="button" id="reset" class="reset">Reset view</button></div></div>
+        <div id="map-wrapper">
+          <svg id="map" aria-label="Map of cities in the United States"></svg>
+          <div id="tooltip" role="status" hidden></div>
+          <div class="map-hint">Scroll to zoom · Drag to pan · Hover near a dot</div>
+          <div id="map-error" hidden></div>
+        </div>
+        <div class="map-footer"><span id="map-count">Matching city locations…</span><span id="legend"></span></div>
+      </div>
+      <p class="method">Data: <strong>city_metrics.csv</strong>, limited to the 1,307 city/state records in your merged dataset. Housing is the 2026-10-31 Zillow Home Value Index; population is POPESTIMATE2025; temperature is a 2026 state-level SSP1-2.6 proxy applied to cities within each state. City coordinates come from a separate reference; unmatched cities are not plotted. This prototype does not calculate livability rankings yet.</p>
+    </div>
+  </section>
+
+  <!-- The prototype rubric requests four sentences for each question. -->
+  <footer class="prototype-writeup content-width">
+    <h2>Initial prototype writeup</h2>
+    <h3>What have we done so far?</h3>
+    <p>We created a working structure for an interactive explanation of city livability. Our page includes an introduction, a three-step scrollytelling section, and a future exploration area. The scrollytelling uses Scrollama to detect which explanation is active. A D3 placeholder changes in response to scrolling, and the final section includes a separate interactive city map with metric toggles and hover details.</p>
+    <h3>What will be the most challenging to design, and why?</h3>
+    <p>One challenge will be combining the three livability metrics into a clear comparison without hiding important differences. We also need to decide how to normalize data that comes from different sources and uses different units. Keeping the map responsive as users scroll and adjust their preferences may require careful coordination of state. Finally, we need to explain the limitations of the ranking so that visitors do not interpret it as an objective judgment about cities.</p>
+  </footer>
+</body>
+</html>

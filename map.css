@@ -1,0 +1,42 @@
+/* Isolated styling for the final city map; no global header/main/button rules. */
+#explorer .controls{background:#142132;border:1px solid #293e52;border-radius:15px 15px 0 0;padding:20px 24px 16px;color:#e6edf5}
+#explorer .controls-header{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#explorer .map-eyebrow{color:#91a7bd;font-size:10px;font-weight:800;letter-spacing:.16em}
+#explorer #status{font-size:12px;color:#8ccdb4}
+#explorer .toggle-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:17px}
+#explorer .toggle{display:flex;gap:12px;align-items:center;cursor:pointer;flex:1;min-width:195px;background:#1b2c40;border:1px solid #33465d;border-radius:10px;padding:13px 14px;font-size:14px;font-weight:650;transition:.2s}
+#explorer .toggle:has(input:not(:checked)){opacity:.55}
+#explorer .toggle input{accent-color:#7fd6b2;width:16px;height:16px}
+#explorer .toggle small{display:block;color:#91a3b8;font-size:11px;font-weight:450;margin-top:3px}
+#explorer .swatch{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+#explorer .swatch.temperature{background:#e5aa67}
+#explorer .swatch.housing{background:#8a9ae9}
+#explorer .swatch.population{background:#7fddb5}
+#explorer .legend-note{color:#a3b4c6;font-size:11px;margin-top:13px}
+#explorer .map-shell{background:#101d2c;border:1px solid #293e52;border-top:0;border-radius:0 0 15px 15px;overflow:hidden;color:#e6edf5}
+#explorer .map-topline{padding:19px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #233649}
+#explorer .map-title{font-size:19px;font-weight:750;letter-spacing:-.02em;margin-top:4px}
+#explorer .map-actions{display:flex;gap:7px}
+#explorer .map-actions button{font:inherit;cursor:pointer;background:#213448;color:#ddebf8;border:1px solid #435a72;border-radius:8px;padding:7px 12px;font-size:15px}
+#explorer .map-actions button:hover{background:#30485f}
+#explorer .map-actions .reset{font-size:12px}
+#map-wrapper{height:min(65vw,650px);min-height:410px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 45% 50%,#1c3349 0%,#132437 64%,#0f1d2d 100%)}
+#map{width:100%;height:100%;display:block;cursor:grab;touch-action:none}
+#map:active{cursor:grabbing}
+#explorer .state{fill:#233f50;stroke:#456070;stroke-width:.6;vector-effect:non-scaling-stroke}
+#explorer .city{stroke:#101e30;stroke-width:1;vector-effect:non-scaling-stroke;fill-opacity:.8;cursor:pointer}
+#explorer .city.hovered{stroke:#fff;stroke-width:2.3;fill-opacity:1}
+#explorer .map-hint{position:absolute;bottom:16px;left:18px;color:#b7c7d6;font-size:11px;background:#0e1c2ddc;border:1px solid #34485d;border-radius:7px;padding:9px 12px;pointer-events:none}
+#tooltip{position:fixed;left:0;top:0;pointer-events:none;z-index:2147483647;background:#f9fcff;color:#162538;box-shadow:0 13px 36px #0007;border-radius:10px;padding:15px 17px;min-width:205px;max-width:260px;font-size:13px;line-height:1.5}
+#tooltip[hidden]{display:none!important}
+#tooltip .tt-head{font-size:15px;font-weight:800;margin-bottom:3px}
+#tooltip .tt-state{font-size:11px;color:#607086;margin-bottom:9px}
+#tooltip .tt-row{display:flex;justify-content:space-between;gap:20px;line-height:1.9}
+#tooltip .tt-row b{font-variant-numeric:tabular-nums}
+#tooltip .tt-empty{color:#7a8798;font-style:italic}
+#explorer #map-error{position:absolute;top:16px;left:20px;right:20px;background:#423044;color:#ffe0ea;padding:10px;border:1px solid #9e506a;border-radius:8px;font-size:13px}
+#explorer #map-error[hidden]{display:none}
+#explorer .map-footer{display:flex;justify-content:space-between;gap:15px;padding:14px 23px;border-top:1px solid #233649;color:#91a7bd;font-size:11px;flex-wrap:wrap}
+#explorer .method{color:#526477;font-size:12px;line-height:1.8;padding:18px 0 0;max-width:1100px}
+#explorer .method strong{color:#344b60}
+@media(max-width:700px){#explorer .controls{padding:15px}#explorer .toggle{min-width:100%}#explorer .map-topline{padding:15px}#explorer .map-actions{gap:5px}#explorer .map-actions button{padding:7px}#map-wrapper{min-height:350px}#explorer .map-hint{font-size:10px;bottom:10px;left:10px}}

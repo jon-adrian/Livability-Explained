@@ -1,0 +1,64 @@
+:root {
+  --bg: #f6f8fa;
+  --ink: #13253b;
+  --muted: #66768a;
+  --line: #dce3ea;
+  --blue: #286aa1;
+  --accent: #317aa8;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); background: var(--bg); font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; }
+.content-width { max-width: 1160px; margin: 0 auto; padding-left: 26px; padding-right: 26px; }
+.eyebrow, .step-number, .graphic-caption { text-transform: uppercase; font-size: .75rem; font-weight: 750; letter-spacing: .14em; color: var(--blue); }
+h1, h2, h3, p { margin-top: 0; }
+h1 { font-size: clamp(3.4rem, 7vw, 6rem); line-height: 1.06; letter-spacing: -.06em; margin: 22px 0; }
+h1 em { color: var(--blue); font-style: normal; }
+h2 { font-size: clamp(2rem, 3vw, 2.75rem); letter-spacing: -.04em; line-height: 1.1; margin-bottom: 18px; }
+.intro { min-height: 91vh; display: flex; align-items: center; background: radial-gradient(circle at 80% 50%, #dbeaf4, transparent 50%), #ecf2f6; }
+.intro .content-width { width: 100%; }
+.intro-description { max-width: 620px; font-size: 1.2rem; color: #42536a; }
+.hint { margin-top: 4rem; font-size: .9rem; font-weight: 700; color: var(--blue); }
+
+/* Scrollama layout: story on left, sticky visualization on right */
+#scrolly { display: grid; grid-template-columns: minmax(0, 44%) minmax(0, 56%); gap: 0; align-items: start; }
+.story { min-width: 0; }
+.step { min-height: 95vh; display: flex; align-items: center; padding: 25px 36px 25px 0; opacity: .38; transition: opacity .3s ease; }
+.step.is-active { opacity: 1; }
+.step-card { border-left: 4px solid var(--line); padding: 22px 25px; transition: border-color .3s ease; }
+.step.is-active .step-card { border-color: var(--blue); }
+.step p { color: #495c70; }
+.step .step-number { color: var(--blue); }
+.future-feature { display: inline-block; padding: 7px 12px; margin: 10px 0 0; border: 1px dashed #96a7b7; border-radius: 8px; color: #6d7d8b !important; font-size: .83rem; }
+.graphic { position: sticky; top: 9vh; height: 76vh; min-height: 480px; align-self: start; margin-top: 9vh; padding: 24px; background: white; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 38px #29456314; }
+.graphic-header { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+#step-counter { font-size: .82rem; color: var(--muted); font-weight: 800; font-variant-numeric: tabular-nums; }
+.graphic h3 { font-size: clamp(1.4rem, 2vw, 2rem); line-height: 1.2; margin: 12px 0 2px; }
+.graphic > p { color: var(--muted); font-size: .92rem; margin-bottom: 12px; }
+.viz-container { position: relative; height: calc(100% - 124px); border-radius: 12px; background: #edf4f8; overflow: hidden; }
+#demo-viz { display: block; width: 100%; height: 100%; }
+.viz-note { position: absolute; bottom: 12px; left: 14px; right: 14px; text-align: center; font-size: .75rem; color: var(--muted); }
+
+.playground { padding: 100px 0 90px; background: #e9f0f5; }
+.playground p { max-width: 740px; color: #516276; }
+.playground-placeholder { display: grid; place-items: center; margin-top: 30px; min-height: 370px; border: 2px dashed #aabcc9; border-radius: 18px; color: #57758a; font-weight: 750; background: #f7fafc; }
+.prototype-writeup { padding-top: 64px; padding-bottom: 88px; max-width: 1000px; }
+.prototype-writeup h3 { margin-top: 25px; margin-bottom: 8px; }
+.prototype-writeup p { color: #526477; }
+@media (max-width: 800px) {
+  #scrolly { display: flex; flex-direction: column; }
+  .graphic { order: -1; position: sticky; top: 0; width: 100%; height: 43vh; min-height: 320px; margin: 0; padding: 16px; z-index: 2; border-radius: 0 0 16px 16px; }
+  .graphic h3 { font-size: 1.35rem; }
+  .graphic-caption { font-size: .65rem; }
+  .graphic > p { margin-bottom: 4px; }
+  .viz-container { height: calc(100% - 96px); }
+  .story { width: 100%; }
+  .step { padding: 35px 0; min-height: 80vh; }
+  .step-card { max-width: 520px; }
+  .intro { min-height: 75vh; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+
+/* The explorer keeps the normal (non-sticky) page flow. */
+#explorer.playground { padding: 100px 0 90px; }
+#explorer .explorer-intro { max-width: 780px; margin-bottom: 26px; }
